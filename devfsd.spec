@@ -21,7 +21,7 @@ Demon systemu plików urz±dzeñ.
 %setup  -q -n devfsd
 
 %build
-make 
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
