@@ -67,7 +67,7 @@ urz±dzeñ.
 %setup  -q -n devfsd
 %patch0 -p1
 %patch1 -p1
-%{ifwith kernel25}
+%if %{with kernel25}
 %patch2 -p1
 %endif
 %patch3 -p1
