@@ -2,7 +2,8 @@ Summary:	DevFS Daemon
 Name:		devfsd
 Version:	1.3.1
 Release:	1
-Source:		%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
+Source1:	devfsd.conf
 Copyright:	GPL
 Group:		Base
 Group(pl):	Podstawowe
@@ -24,7 +25,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8,%{_sysconfdir}}
 
 install devfsd		$RPM_BUILD_ROOT%{_sbindir}
 install devfsd.8	$RPM_BUILD_ROOT%{_mandir}/man8
-install devfsd.conf	$RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/*
 
