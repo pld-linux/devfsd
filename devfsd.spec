@@ -1,3 +1,4 @@
+%bcond_without kernel25
 Summary:	DevFS Daemon
 Summary(pl):	Demon DevFS
 Name:		devfsd
@@ -66,7 +67,10 @@ urz±dzeñ.
 %setup  -q -n devfsd
 %patch0 -p1
 %patch1 -p1
+%{ifwith kernel25}
 %patch2 -p1
+%endif
+%patch3 -p1
 
 %build
 %{__make} CC="%{__cc}" CEXTRAS="%{rpmcflags} -I."
