@@ -1,0 +1,11 @@
+--- devfsd/GNUmakefile.org	2004-07-02 10:59:33.400598184 +0000
++++ devfsd/GNUmakefile	2004-07-02 10:59:41.154419424 +0000
+@@ -20,7 +20,7 @@
+ 
+ OBJECTS = devfsd.o expression.o compat_name.o
+ 
+-CFLAGS = -I. -I$(KERNEL_DIR)/include -Wall $(CEXTRAS) $(DEFINES)
++CFLAGS = -I. -Wall $(CEXTRAS) $(DEFINES)
+ 
+ devfsd:	$(OBJECTS)
+ 	$(CC) -o devfsd $(OBJECTS) $(LDFLAGS) -export-dynamic -ldl

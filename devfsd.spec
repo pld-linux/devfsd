@@ -13,6 +13,7 @@ Patch0:		%{name}-lirc.patch
 Patch1:		%{name}-optflags.patch
 Patch2:		%{name}-kernel2.5.patch
 Patch3:		%{name}-drzewo.patch
+Patch4:		%{name}-include.patch
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
 Conflicts:	kernel =< 2.2
 Requires:	devfs
@@ -71,6 +72,7 @@ urz±dzeñ.
 %patch2 -p1
 %endif
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__make} CC="%{__cc}" CEXTRAS="%{rpmcflags} -I."
