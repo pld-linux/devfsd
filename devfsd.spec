@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
+# Source0-md5:	44c6394b8e2e8feaf453aeddc8a3ee69
 Source1:	%{name}.conf
 Patch0:		%{name}-lirc.patch
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
