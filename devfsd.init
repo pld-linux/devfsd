@@ -2,7 +2,7 @@
 #
 # devfsd	Start/stop devfsd
 #
-# chkconfig:    12345 1 99
+# chkconfig:	12345 1 99
 #
 # description:	Starts/stops devfsd - daemon responsible for creating smart
 # 		links when using devfs
@@ -32,7 +32,7 @@ case "$1" in
 		msg_already_running devfsd
 		exit 1
 	fi
-        ;;
+	;;
   stop)
 	if [ -f /var/lock/subsys/devfsd ]; then
 		msg_stopping devfsd
@@ -43,11 +43,11 @@ case "$1" in
 		msg_not_running devfsd
 		exit 1
 	fi	
-        ;;
+	;;
   restart)
-        $0 stop
+	$0 stop
 	$0 start
-        ;;
+	;;
   reload)
 	if [ -f /var/lock/subsys/<service> ]; then
 		msg_reloading devfsd
@@ -68,11 +68,11 @@ case "$1" in
   status)
 	status devfsd
 	RETVAL=$?
-        ;;
+	;;
   *)
-        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
-	msg_usage "$0 {start|stop|status|restart|reload|force-reload}"
-        exit 1
+	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 1
 esac
 
 exit $RETVAL
