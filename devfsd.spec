@@ -4,11 +4,11 @@ Name:		devfsd
 Version:	1.3.25
 Release:	2
 License:	GPL
+Group:		Base
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-lirc.patch
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
-Group:		Base
 Conflicts:	kernel =< 2.2
 Requires:	devfs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -84,4 +84,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
 %attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man*/*.gz
+%{_mandir}/man?/*
