@@ -7,7 +7,7 @@ Source1:	devfsd.conf
 Copyright:	GPL
 Group:		Base
 Group(pl):	Podstawowe
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_exec_prefix	/
 
