@@ -1,7 +1,7 @@
 Summary:	DevFS Daemon
 Name:		devfsd
 Version:	1.3.10
-Release:	1
+Release:	2
 Source0:	ftp://ftp.atnf.csiro.au:21/pub/people/rgooch/linux/daemons/%{name}-v%{version}.tar.gz
 Source1:	devfsd.conf
 License:	GPL
@@ -21,7 +21,7 @@ Demon systemu plików urz±dzeñ.
 %setup  -q -n devfsd
 
 %build
-%{__make} 
+%{__make} CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -I."
 
 %install
 rm -rf $RPM_BUILD_ROOT
