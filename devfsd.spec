@@ -3,7 +3,7 @@ Summary:	DevFS Daemon
 Summary(pl):	Demon DevFS
 Name:		devfsd
 Version:	1.3.25
-Release:	5
+Release:	6
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
@@ -75,11 +75,14 @@ urz±dzeñ.
 %patch4 -p1
 
 %build
-%{__make} CC="%{__cc}" CEXTRAS="%{rpmcflags} -I."
+%{__make} \
+	CC="%{__cc}" \
+	CEXTRAS="%{rpmcflags} -I." \
+	nsl_libs=`echo /%{_lib}/libnsl.so.*` \
+	LIBNSL=`echo /%{_lib}/libnsl.so.*`
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,man5},%{_sysconfdir}}
 
 install devfsd		$RPM_BUILD_ROOT%{_sbindir}
