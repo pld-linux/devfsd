@@ -20,6 +20,7 @@ Requires:	devfs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_exec_prefix	/
+%define 	_sbindir	/sbin
 
 %description
 The devfsd programme is a daemon, run by the system boot scripts which
