@@ -1,4 +1,3 @@
-%bcond_without kernel25
 Summary:	DevFS Daemon
 Summary(pl):	Demon DevFS
 Name:		devfsd
@@ -12,6 +11,7 @@ Source1:	%{name}.conf
 Patch0:		%{name}-lirc.patch
 Patch1:		%{name}-optflags.patch
 Patch2:		%{name}-kernel2.5.patch
+Patch3:		%{name}-drzewo.patch
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
 Conflicts:	kernel =< 2.2
 Requires:	devfs
@@ -66,9 +66,7 @@ urz±dzeñ.
 %setup  -q -n devfsd
 %patch0 -p1
 %patch1 -p1
-%{ifwith kernel25}
 %patch2 -p1
-%endif
 
 %build
 %{__make} CC="%{__cc}" CEXTRAS="%{rpmcflags} -I."
