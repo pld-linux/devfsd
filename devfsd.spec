@@ -1,5 +1,5 @@
 Summary:	DevFS Daemon
-Summary(pl):	Deamon DevFS
+Summary(pl):	Demon DevFS
 Name:		devfsd
 Version:	1.3.18
 Release:	2
@@ -7,6 +7,7 @@ License:	GPL
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}.init
+URL:		http://www.atnf.csiro.au/~rgooch/linux/
 Group:		Base
 Group(de):	Gründsätzlich
 Group(es):	Base
@@ -43,17 +44,17 @@ each leaf node.
 
 %description -l pl
 Devfsd jest demonem startowanym ze skryptów startowych systemu, który
-daje mo¿liwo¶æ inteligentnego zarz±dzania wpisami w Device Filesystem 
-(devfs).
-Jako czê¶æ fazy ustawieñ devfsd tworzy linki symboliczne, które s±
-wkompilowane w kod. Te linki s± wymagane zgodnie z 
-/usr/src/linux/Documentation/devices.txt. To zachowanie mo¿e siê zmieniæ 
-w przysz³o¶ci.
+daje mo¿liwo¶æ inteligentnego zarz±dzania wpisami w Device Filesystem
+(devfs). Jako czê¶æ fazy ustawieñ devfsd tworzy linki symboliczne,
+które s± wkompilowane w kod. Te linki s± wymagane zgodnie z
+/usr/src/linux/Documentation/devices.txt. To zachowanie mo¿e siê
+zmieniæ w przysz³o¶ci.
 
-devfsd czyta specjalny plik kontrolny .devfsd w zamountowanym katalogu
-devfs i czeka na na tworzenie i usuwanie wpisów urz±dzeñ (nazywa siê to
-operacj± zmiany). Dla ka¿dej zmiany devfsd mo¿e podj±æ wiele dzia³añ. 
-Demon normalnie uruchamia sam siebie i wysy³a komunikat do syslog'a.
+devfsd czyta specjalny plik kontrolny .devfsd w zamontowanym katalogu
+devfs i czeka na na tworzenie i usuwanie wpisów urz±dzeñ (nazywa siê
+to operacj± zmiany). Dla ka¿dej zmiany devfsd mo¿e podj±æ wiele
+dzia³añ. Demon normalnie uruchamia sam siebie i wysy³a komunikat do
+syslog'a.
 
 Otwarcie syslog'a jest normalnie automatycznie opó¼nione do czasu, gdy
 /dev/log nie zostanie utworzony.
@@ -70,14 +71,14 @@ urz±dzeñ.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,man5},%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,man5},%{_sysconfdir},/etc/rc.d/init.d}
 
 install devfsd		$RPM_BUILD_ROOT%{_sbindir}
 install devfsd.8	$RPM_BUILD_ROOT%{_mandir}/man8
 install devfsd.conf.5	$RPM_BUILD_ROOT%{_mandir}/man5
 install modules.devfs	$RPM_BUILD_ROOT%{_sysconfdir}/modules.devfs
 install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
-install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d.init.d/%{name}
+install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 
 %post
 /sbin/chkconfig --add devfsd
@@ -103,5 +104,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
 %attr(755,root,root) %{_sbindir}/*
-%attr(754,root,root) /etc/rc.d./init.d/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %{_mandir}/man*/*.gz
