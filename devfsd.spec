@@ -1,8 +1,8 @@
 Summary:	DevFS Daemon
 Summary(pl):	Deamon DevFS
 Name:		devfsd
-Version:	1.3.16
-Release:	2
+Version:	1.3.18
+Release:	1
 License:	GPL
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
 Source1:	%{name}.conf
