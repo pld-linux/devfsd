@@ -14,6 +14,9 @@ Buildroot:	/tmp/%{name}-%{version}-root
 %description
 Device File System Daemon.
 
+%description -l pl
+Demon systemu plików urz±dzeñ.
+
 %prep
 %setup -q -n devfsd
 %build
