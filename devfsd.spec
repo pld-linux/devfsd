@@ -41,6 +41,22 @@ mounted device tree and will generate synthetic REGISTER events for
 each leaf node.
 
 %description -l pl
+Devfsd jest demonem startowanym ze skryptów startowych systemu, który
+daje mo¿liwo¶æ inteligentnego zarz±dzania wpisami w Device Filesystem 
+(devfs).
+Jako czê¶æ fazy ustawieñ devfsd tworzy linki symboliczne, które s±
+wkompilowane w kod. Te linki s± wymagane zgodnie z 
+/usr/src/linux/Documentation/devices.txt. To zachowanie mo¿e siê zmieniæ 
+w przysz³o¶ci.
+
+devfsd czyta specjalny plik kontrolny .devfsd w zamountowanym katalogu
+devfs i czeka na na tworzenie i usuwanie wpisów urz±dzeñ (nazywa siê to
+operacj± zmiany). Dla ka¿dej zmiany devfsd mo¿e podj±æ wiele dzia³añ. 
+Demon normalnie uruchamia sam siebie i wysy³a komunikat do syslog'a.
+
+Otwarcie syslog'a jest normalnie automatycznie opó¼nione do czasu, gdy
+/dev/log nie zostanie utworzony.
+
 Demon systemu plików urz±dzeñ. Pozwala na u¿ywanie "tradycyjnych" nazw
 urz±dzeñ.
 
