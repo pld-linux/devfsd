@@ -2,10 +2,11 @@ Summary:	DevFS Daemon
 Summary(pl):	Deamon DevFS
 Name:		devfsd
 Version:	1.3.18
-Release:	1
+Release:	2
 License:	GPL
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
 Source1:	%{name}.conf
+Source2:	%{name}.init
 Group:		Base
 Group(de):	Gründsätzlich
 Group(es):	Base
@@ -76,12 +77,23 @@ install devfsd.8	$RPM_BUILD_ROOT%{_mandir}/man8
 install devfsd.conf.5	$RPM_BUILD_ROOT%{_mandir}/man5
 install modules.devfs	$RPM_BUILD_ROOT%{_sysconfdir}/modules.devfs
 install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
+install %{SOURCE2}	$RPM_BUILD_ROOT/etc/rc.d.init.d/%{name}
 
 %post
-killall -HUP devfsd || :
+/sbin/chkconfig --add devfsd
+if [ -f /var/lock/subsys/devfsd ]; then
+	/etc/rc.d/init.d/devfsd restart >&2
+else
+	echo "Run \"/etc/rc.d/init.d/devfsd start\" to activate devfsd."
+fi
 
-%postun
-[ "$1" = "0" ] && killall -TERM devfsd || :
+%preun
+if [ "$1" = "0" ]; then
+        if [ -f /var/lock/subsys/devfsd ]; then
+                /etc/rc.d/init.d/devfsd stop >&2
+        fi
+        /sbin/chkconfig --del devfsd
+fi
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -91,4 +103,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
 %attr(755,root,root) %{_sbindir}/*
+%attr(754,root,root) /etc/rc.d./init.d/%{name}
 %{_mandir}/man*/*.gz
