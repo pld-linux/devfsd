@@ -8,10 +8,6 @@ Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-
 Source1:	%{name}.conf
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
 Group:		Base
-Group(de):	Gründsätzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
 Conflicts:	kernel =< 2.2
 Requires:	devfs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
