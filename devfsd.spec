@@ -1,9 +1,9 @@
 Summary:	DevFS Daemon
 Summary(pl):	Deamon DevFS
 Name:		devfsd
-Version:	1.3.10
-Release:	2
-Source0:	ftp://ftp.atnf.csiro.au:21/pub/people/rgooch/linux/daemons/%{name}-v%{version}.tar.gz
+Version:	1.3.11
+Release:	1
+Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/devfsd-v1.3.11.tar.gz
 Source1:	devfsd.conf
 License:	GPL
 Group:		Base
@@ -23,7 +23,7 @@ Demon systemu plików urz±dzeñ.
 %setup  -q -n devfsd
 
 %build
-%{__make} CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -I."
+%{__make} CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -I."
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -34,8 +34,6 @@ install devfsd		$RPM_BUILD_ROOT%{_sbindir}
 install devfsd.8	$RPM_BUILD_ROOT%{_mandir}/man8
 install modules.devfs	$RPM_BUILD_ROOT%{_sysconfdir}/modules.devfs
 install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man8/*
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
