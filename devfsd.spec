@@ -1,10 +1,9 @@
 Summary:	DevFS Daemon
 Name:		devfsd
-Version:	1.3.6
+Version:	1.3.7
 Release:	1
 Source0:	ftp://ftp.atnf.csiro.au:21/pub/people/rgooch/linux/daemons/%{name}-v%{version}.tar.gz
 Source1:	devfsd.conf
-Patch0:		devfsd-nsl.patch
 Copyright:	GPL
 Group:		Base
 Group(pl):	Podstawowe
@@ -20,10 +19,9 @@ Demon systemu plików urz±dzeñ.
 
 %prep
 %setup  -q -n devfsd
-%patch0 -p1
 
 %build
-make LDFLAGS="-lnsl"
+make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
