@@ -64,7 +64,7 @@ urz±dzeñ.
 %setup  -q -n devfsd
 
 %build
-%{__make} CFLAGS="%{rpmcflags} -I."
+%{__make} CEXTRAS="%{rpmcflags} -I."
 
 %install
 rm -rf $RPM_BUILD_ROOT
