@@ -23,7 +23,7 @@ Demon systemu plików urz±dzeñ.
 %setup  -q -n devfsd
 
 %build
-%{__make} CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS} -I."
+%{__make} CFLAGS="%{rpmcflags} -I."
 
 %install
 rm -rf $RPM_BUILD_ROOT
