@@ -1,6 +1,6 @@
 Summary:	DevFS Daemon
 Name:		devfsd
-Version:	1.3.7
+Version:	1.3.10
 Release:	1
 Source0:	ftp://ftp.atnf.csiro.au:21/pub/people/rgooch/linux/daemons/%{name}-v%{version}.tar.gz
 Source1:	devfsd.conf
