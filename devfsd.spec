@@ -1,4 +1,5 @@
 Summary:	DevFS Daemon
+Summary(pl):	Deamon DevFS
 Name:		devfsd
 Version:	1.3.10
 Release:	2
@@ -6,6 +7,7 @@ Source0:	ftp://ftp.atnf.csiro.au:21/pub/people/rgooch/linux/daemons/%{name}-v%{v
 Source1:	devfsd.conf
 License:	GPL
 Group:		Base
+Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
