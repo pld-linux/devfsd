@@ -2,13 +2,14 @@ Summary:	DevFS Daemon
 Summary(pl):	Demon DevFS
 Name:		devfsd
 Version:	1.3.25
-Release:	2
+Release:	3
 License:	GPL
 Group:		Base
 Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
 # Source0-md5:	44c6394b8e2e8feaf453aeddc8a3ee69
 Source1:	%{name}.conf
 Patch0:		%{name}-lirc.patch
+Patch1:		%{name}-optflags.patch
 URL:		http://www.atnf.csiro.au/~rgooch/linux/
 Conflicts:	kernel =< 2.2
 Requires:	devfs
@@ -62,6 +63,7 @@ urz±dzeñ.
 %prep
 %setup  -q -n devfsd
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} CC="%{__cc}" CEXTRAS="%{rpmcflags} -I."
