@@ -1,23 +1,46 @@
 Summary:	DevFS Daemon
 Summary(pl):	Deamon DevFS
 Name:		devfsd
-Version:	1.3.12
+Version:	1.3.14
 Release:	1
-Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/devfsd-v1.3.12.tar.gz
-Source1:	devfsd.conf
 License:	GPL
+Source0:	ftp://ftp.atnf.csiro.au/pub/people/rgooch/linux/daemons/devfsd/%{name}-v%{version}.tar.gz
+Source1:	devfsd.conf
 Group:		Base
 Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
+Conflicts:	kernel =< 2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_exec_prefix	/
 
 %description
-Device File System Daemon.
+The devfsd programme is a daemon, run by the system boot
+scripts which can provide for intelligent management of
+device entries in the Device Filesystem (devfs).
+
+As part of its setup phase devfsd creates certain symbolic
+links which are compiled into the code. These links are
+required by /usr/src/linux/Documentation/devices.txt. This
+behaviour may change in future revisions.
+
+devfsd will read the special control file .devfsd in a
+mounted devfs, listening for the creation and removal of
+device entries (this is termed a change operation). For
+each change operation, devfsd can take many actions. The
+daemon will normally run itself in the background and send
+messages to syslog.
+
+The opening of the syslog service is automatically delayed
+until /dev/log is created.
+
+At startup, before switching to daemon mode, devfsd will
+scan the mounted device tree and will generate synthetic
+REGISTER events for each leaf node.
 
 %description -l pl
 Demon systemu plików urz±dzeñ.
+Pozwala na u¿ywanie "tradycyjnych" nazw urz±dzeñ.
 
 %prep
 %setup  -q -n devfsd
@@ -28,12 +51,19 @@ Demon systemu plików urz±dzeñ.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8,%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,man5},%{_sysconfdir}}
 
 install devfsd		$RPM_BUILD_ROOT%{_sbindir}
 install devfsd.8	$RPM_BUILD_ROOT%{_mandir}/man8
+install devfsd.conf.5	$RPM_BUILD_ROOT%{_mandir}/man5
 install modules.devfs	$RPM_BUILD_ROOT%{_sysconfdir}/modules.devfs
 install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
+
+%post
+killall -HUP devfsd || :
+
+%postun
+[ "$1" = "0" ] && killall -TERM devfsd || :
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -43,4 +73,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
 %attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man8/*.gz
+%{_mandir}/man*/*.gz
