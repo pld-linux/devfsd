@@ -74,10 +74,10 @@ install devfsd.conf.5	$RPM_BUILD_ROOT%{_mandir}/man5
 install modules.devfs	$RPM_BUILD_ROOT%{_sysconfdir}/modules.devfs
 install %{SOURCE1} 	$RPM_BUILD_ROOT%{_sysconfdir}/devfsd.conf
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%files
 %defattr(644,root,root,755)
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
