@@ -5,7 +5,7 @@
  alias	/dev/rawctl		/dev/raw
  
 +# lirc
-+probeall  /dev/lirc		lirc_driver
++probeall  /dev/lirc		lirc
  
  # Pull in the configuration file. Do this last because modprobe(8) processes in
  # per^H^H^Hreverse order and the sysadmin may want to over-ride what is in the
