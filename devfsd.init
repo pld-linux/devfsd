@@ -19,6 +19,7 @@
 
 is_yes "$RUN_DEVFSD" || exit 1
 
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -30,40 +31,31 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/devfsd
 	else
 		msg_already_running devfsd
-		exit 1
 	fi
 	;;
   stop)
 	if [ -f /var/lock/subsys/devfsd ]; then
 		msg_stopping devfsd
 		killproc devfsd
-		RETVAL=$?
 		rm -f /var/lock/subsys/devfsd
 	else
 		msg_not_running devfsd
-		exit 1
 	fi	
 	;;
   restart)
 	$0 stop
 	$0 start
+	exit $?
 	;;
-  reload)
+  reload|force-reload)
 	if [ -f /var/lock/subsys/<service> ]; then
 		msg_reloading devfsd
 		killproc devfsd -HUP
 		RETVAL=$?
 	else
-		msg_not_running devfsd
-		RETVAL=1
+		msg_not_running devfsd >&2
+		RETVAL=7
 	fi
-	;;
-  force-reload)
-	# if program allows reloading without stopping
-	$0 reload
-
-	# or if it doesn't
-	$0 stop && $0 start
 	;;
   status)
 	status devfsd
@@ -72,7 +64,7 @@ case "$1" in
   *)
 	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
 	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
-	exit 1
+	exit 3
 esac
 
 exit $RETVAL
