@@ -1,4 +1,4 @@
-%bcond_without kernel25
+%bcond_without	kernel25
 Summary:	DevFS Daemon
 Summary(pl):	Demon DevFS
 Name:		devfsd
