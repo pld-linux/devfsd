@@ -40,7 +40,7 @@ case "$1" in
 		rm -f /var/lock/subsys/devfsd
 	else
 		msg_not_running devfsd
-	fi	
+	fi
 	;;
   restart)
 	$0 stop
