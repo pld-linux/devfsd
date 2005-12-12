@@ -66,7 +66,7 @@ Demon systemu plików urz±dzeñ. Pozwala na u¿ywanie "tradycyjnych" nazw
 urz±dzeñ.
 
 %prep
-%setup  -q -n devfsd
+%setup  -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %if %{with kernel25}
@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/devfsd.conf
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/modules.devfs
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/devfsd.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/modules.devfs
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
