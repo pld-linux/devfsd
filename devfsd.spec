@@ -1,6 +1,6 @@
 %bcond_without	kernel25
 Summary:	DevFS Daemon
-Summary(pl.UTF-8):   Demon DevFS
+Summary(pl.UTF-8):	Demon DevFS
 Name:		devfsd
 Version:	1.3.25
 Release:	6
