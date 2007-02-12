@@ -1,6 +1,6 @@
 %bcond_without	kernel25
 Summary:	DevFS Daemon
-Summary(pl):	Demon DevFS
+Summary(pl.UTF-8):   Demon DevFS
 Name:		devfsd
 Version:	1.3.25
 Release:	6
@@ -45,25 +45,25 @@ At startup, before switching to daemon mode, devfsd will scan the
 mounted device tree and will generate synthetic REGISTER events for
 each leaf node.
 
-%description -l pl
-Devfsd jest demonem startowanym ze skryptów startowych systemu, który
-daje mo¿liwo¶æ inteligentnego zarz±dzania wpisami w Device Filesystem
-(devfs). Jako czê¶æ fazy ustawieñ devfsd tworzy linki symboliczne,
-które s± wkompilowane w kod. Te linki s± wymagane zgodnie z
-/usr/src/linux/Documentation/devices.txt. To zachowanie mo¿e siê
-zmieniæ w przysz³o¶ci.
+%description -l pl.UTF-8
+Devfsd jest demonem startowanym ze skryptÃ³w startowych systemu, ktÃ³ry
+daje moÅ¼liwoÅ›Ä‡ inteligentnego zarzÄ…dzania wpisami w Device Filesystem
+(devfs). Jako czÄ™Å›Ä‡ fazy ustawieÅ„ devfsd tworzy linki symboliczne,
+ktÃ³re sÄ… wkompilowane w kod. Te linki sÄ… wymagane zgodnie z
+/usr/src/linux/Documentation/devices.txt. To zachowanie moÅ¼e siÄ™
+zmieniÄ‡ w przyszÅ‚oÅ›ci.
 
 devfsd czyta specjalny plik kontrolny .devfsd w zamontowanym katalogu
-devfs i czeka na na tworzenie i usuwanie wpisów urz±dzeñ (nazywa siê
-to operacj± zmiany). Dla ka¿dej zmiany devfsd mo¿e podj±æ wiele
-dzia³añ. Demon normalnie uruchamia sam siebie i wysy³a komunikat do
+devfs i czeka na na tworzenie i usuwanie wpisÃ³w urzÄ…dzeÅ„ (nazywa siÄ™
+to operacjÄ… zmiany). Dla kaÅ¼dej zmiany devfsd moÅ¼e podjÄ…Ä‡ wiele
+dziaÅ‚aÅ„. Demon normalnie uruchamia sam siebie i wysyÅ‚a komunikat do
 syslog'a.
 
-Otwarcie syslog'a jest normalnie automatycznie opó¼nione do czasu, gdy
+Otwarcie syslog'a jest normalnie automatycznie opÃ³Åºnione do czasu, gdy
 /dev/log nie zostanie utworzony.
 
-Demon systemu plików urz±dzeñ. Pozwala na u¿ywanie "tradycyjnych" nazw
-urz±dzeñ.
+Demon systemu plikÃ³w urzÄ…dzeÅ„. Pozwala na uÅ¼ywanie "tradycyjnych" nazw
+urzÄ…dzeÅ„.
 
 %prep
 %setup  -q -n %{name}
